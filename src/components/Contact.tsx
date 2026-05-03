@@ -12,7 +12,7 @@ const contacts = [
 
 export default function Contact() {
   return (
-    <section id="contact" className="max-w-4xl mx-auto px-4 py-16">
+    <section id="contact" className="max-w-4xl mx-auto px-4 py-16 bg-[#F8FAFC] dark:bg-[#0F172A]">
       <SectionHeading label="Contact" title="Let's connect" />
 
       <div className="mt-6 grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -22,14 +22,14 @@ export default function Contact() {
             href={c.href}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center gap-3 p-4 rounded-xl bg-[#f8f7ff] dark:bg-[#1e1f27] border border-[#e5e4e7] dark:border-[#2e303a] hover:border-[#aa3bff] transition-colors group"
+            className="flex items-center gap-3 p-4 rounded-xl bg-white dark:bg-[#1E293B] border border-[#E2E8F0] dark:border-[#1E293B] hover:border-[#5BDBB2] hover:bg-[#5BDBB2]/5 transition-colors group"
           >
-            <div className="p-2 rounded-lg bg-[#aa3bff]/10 group-hover:bg-[#aa3bff]/20 transition-colors">
-              <c.icon size={16} className="text-[#aa3bff]" />
+            <div className="p-2 rounded-xl bg-[#FF6B6B]/10 group-hover:bg-[#FF6B6B]/20 transition-colors">
+              <c.icon size={16} className="text-[#FF6B6B]" />
             </div>
             <div>
-              <p className="text-xs text-[#6b6375] dark:text-[#9ca3af]">{c.label}</p>
-              <p className="text-sm font-medium text-[#08060d] dark:text-[#f3f4f6]">
+              <p className="text-xs text-[#64748B] dark:text-[#94A3B8]">{c.label}</p>
+              <p className="text-sm font-medium text-[#0F172A] dark:text-[#F1F5F9]">
                 {c.value}
               </p>
             </div>
@@ -37,10 +37,10 @@ export default function Contact() {
         ))}
       </div>
 
-      <div className="mt-8 p-6 rounded-2xl bg-[#aa3bff] text-white text-center">
+      <div className="mt-8 p-6 rounded-2xl bg-[#5BDBB2] text-white text-center">
         <p className="font-semibold mb-1">Open to opportunities</p>
-        <p className="text-sm opacity-80">
-          Available to join from July 2026. Expected salary: Rp 10jt+
+        <p className="text-sm opacity-90">
+          Available to join from July 2026
         </p>
       </div>
     </section>
@@ -50,10 +50,10 @@ export default function Contact() {
 function SectionHeading({ label, title }: { label: string; title: string }) {
   return (
     <div>
-      <p className="text-xs font-semibold uppercase tracking-widest text-[#aa3bff] mb-1">
+      <p className="text-xs font-bold uppercase tracking-widest text-[#FF6B6B] mb-1">
         {label}
       </p>
-      <h2 className="text-2xl font-bold text-[#08060d] dark:text-[#f3f4f6]">
+      <h2 className="text-2xl font-bold text-[#0F172A] dark:text-[#F1F5F9]">
         {title}
       </h2>
     </div>

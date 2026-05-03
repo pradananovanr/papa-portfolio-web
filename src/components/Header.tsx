@@ -13,22 +13,23 @@ export default function Header() {
   const [open, setOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 z-50 bg-white/80 dark:bg-[#16171d]/80 backdrop-blur-md border-b border-[#e5e4e7] dark:border-[#2e303a]">
+    <header className="sticky top-0 z-50 bg-white/90 dark:bg-[#0F172A]/90 backdrop-blur-md border-b border-[#E2E8F0] dark:border-[#1E293B]">
       <nav className="max-w-4xl mx-auto px-4 py-3 flex items-center justify-between">
         <a
           href="#"
-          className="text-base font-semibold text-[#08060d] dark:text-[#f3f4f6] tracking-tight"
+          className="text-base font-bold tracking-tight text-[#0F172A] dark:text-[#F1F5F9]"
         >
-          Novan<span className="text-[#aa3bff]">.dev</span>
+          <span className="text-gradient">Novan</span>
+          <span className="text-[#FF6B6B]">.dev</span>
         </a>
 
         {/* Desktop */}
-        <ul className="hidden md:flex gap-6 text-sm text-[#6b6375] dark:text-[#9ca3af]">
+        <ul className="hidden md:flex gap-6 text-sm text-[#64748B] dark:text-[#94A3B8]">
           {navLinks.map((l) => (
             <li key={l.href}>
               <a
                 href={l.href}
-                className="hover:text-[#aa3bff] transition-colors"
+                className="hover:text-[#FF6B6B] transition-colors"
               >
                 {l.label}
               </a>
@@ -38,7 +39,7 @@ export default function Header() {
 
         {/* Mobile toggle */}
         <button
-          className="md:hidden text-[#6b6375] dark:text-[#9ca3af]"
+          className="md:hidden text-[#64748B] dark:text-[#94A3B8]"
           onClick={() => setOpen((v) => !v)}
           aria-label="Toggle menu"
         >
@@ -48,13 +49,13 @@ export default function Header() {
 
       {/* Mobile menu */}
       {open && (
-        <div className="md:hidden border-t border-[#e5e4e7] dark:border-[#2e303a] bg-white dark:bg-[#16171d]">
-          <ul className="flex flex-col px-4 py-3 gap-3 text-sm text-[#6b6375] dark:text-[#9ca3af]">
+        <div className="md:hidden border-t border-[#E2E8F0] dark:border-[#1E293B] bg-white dark:bg-[#0F172A]">
+          <ul className="flex flex-col px-4 py-3 gap-3 text-sm text-[#64748B] dark:text-[#94A3B8]">
             {navLinks.map((l) => (
               <li key={l.href}>
                 <a
                   href={l.href}
-                  className="hover:text-[#aa3bff] transition-colors"
+                  className="hover:text-[#FF6B6B] transition-colors"
                   onClick={() => setOpen(false)}
                 >
                   {l.label}

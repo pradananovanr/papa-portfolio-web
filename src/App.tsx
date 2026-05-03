@@ -12,7 +12,7 @@ import Footer from "./components/Footer";
 export default function App() {
   return (
     <QueryClientProvider client={queryClient}>
-      <div className="min-h-screen flex flex-col bg-white dark:bg-[#16171d]">
+      <div className="min-h-screen flex flex-col bg-white dark:bg-[#0F172A]">
         <Header />
         <main className="flex-1">
           <Hero />
