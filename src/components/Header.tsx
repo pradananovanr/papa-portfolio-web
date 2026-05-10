@@ -19,8 +19,7 @@ export default function Header() {
           href="#"
           className="text-base font-bold tracking-tight text-[#0F172A] dark:text-[#F1F5F9]"
         >
-          <span className="text-gradient">Novan</span>
-          <span className="text-[#FF6B6B]">.dev</span>
+          <span className="text-gradient">prdnnvnrnt</span>
         </a>
 
         {/* Desktop */}

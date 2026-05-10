@@ -10,7 +10,7 @@ export const personalInfo = {
   linkedin: "pradananovanrianto",
   github: "pradananovanr",
   twitter: "@prdnnvnrnt",
-  website: "rumahrobotforex.com",
+  website: "prdnnvnrnt.my.id",
   summary: `Backend Developer with over two years of experience, specializing in backend service development using Golang, as well as managing and integrating systems based on PostgreSQL and SQL Server. Experienced in building trading systems, API integration (Telegram, Digiflazz), transactional email delivery with SendGrid, file management via SFTP, and developing concurrency systems for large-scale data processing. Accustomed to working in production environments with platforms like Red Hat Openshift, and familiar with clean architecture principles, RESTful API, and modern CI/CD tools. Ready to adapt and grow within an agile and innovative development team.`,
 };
 
