@@ -4,6 +4,17 @@ import { Github, Linkedin, Twitter, Mail, MapPin } from "lucide-react";
 export default function Hero() {
   return (
     <section className="max-w-4xl mx-auto px-4 py-20 text-center">
+      <div className="flex justify-center mb-6">
+        <div className="relative group">
+          <div className="absolute -inset-0.5 bg-gradient-to-r from-[#FF6B6B] to-[#5BDBB2] rounded-full blur opacity-30 group-hover:opacity-70 transition duration-300"></div>
+          <img
+            src="/profile.png"
+            alt={personalInfo.name}
+            className="relative w-32 h-32 rounded-full object-cover border-4 border-white dark:border-[#1E293B] shadow-md transition-transform duration-300 group-hover:scale-105"
+          />
+        </div>
+      </div>
+
       <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#5BDBB2]/10 border border-[#5BDBB2]/30 text-xs text-[#5BDBB2] font-medium mb-6">
         <span className="w-1.5 h-1.5 rounded-full bg-[#5BDBB2] animate-pulse" />
         Available for opportunities

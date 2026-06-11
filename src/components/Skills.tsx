@@ -41,6 +41,60 @@ export default function Skills() {
           </div>
         ))}
       </div>
+      <div className="mt-10">
+        <h3 className="text-base font-semibold text-[#0F172A] dark:text-[#F1F5F9] mb-4">
+          Core Competency Matrix
+        </h3>
+        <div className="overflow-x-auto rounded-2xl border border-[#E2E8F0] dark:border-[#1E293B] bg-white dark:bg-[#1E293B]">
+          <table className="w-full text-left border-collapse text-sm">
+            <thead>
+              <tr className="bg-[#F8FAFC] dark:bg-[#0F172A]/50 border-b border-[#E2E8F0] dark:border-[#1E293B]">
+                <th className="p-4 font-semibold text-[#0F172A] dark:text-[#F1F5F9] w-1/3">Skill Category</th>
+                <th className="p-4 font-semibold text-[#0F172A] dark:text-[#F1F5F9] w-1/2">Technologies</th>
+                <th className="p-4 font-semibold text-[#0F172A] dark:text-[#F1F5F9] w-1/6">Level</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-[#E2E8F0] dark:divide-[#1E293B]">
+              <tr className="hover:bg-[#F8FAFC]/50 dark:hover:bg-[#0F172A]/20 transition-colors">
+                <td className="p-4 font-medium text-[#0F172A] dark:text-[#F1F5F9]">Programming Languages</td>
+                <td className="p-4 text-[#64748B] dark:text-[#94A3B8]">Golang, PHP, JavaScript, TypeScript</td>
+                <td className="p-4">
+                  <span className="inline-block px-2.5 py-0.5 rounded-full text-xs bg-[#5BDBB2]/10 text-[#5BDBB2] font-semibold">
+                    Advanced
+                  </span>
+                </td>
+              </tr>
+              <tr className="hover:bg-[#F8FAFC]/50 dark:hover:bg-[#0F172A]/20 transition-colors">
+                <td className="p-4 font-medium text-[#0F172A] dark:text-[#F1F5F9]">Databases</td>
+                <td className="p-4 text-[#64748B] dark:text-[#94A3B8]">PostgreSQL, MySQL, SQL Server, Oracle</td>
+                <td className="p-4">
+                  <span className="inline-block px-2.5 py-0.5 rounded-full text-xs bg-[#5BDBB2]/10 text-[#5BDBB2] font-semibold">
+                    Advanced
+                  </span>
+                </td>
+              </tr>
+              <tr className="hover:bg-[#F8FAFC]/50 dark:hover:bg-[#0F172A]/20 transition-colors">
+                <td className="p-4 font-medium text-[#0F172A] dark:text-[#F1F5F9]">Frameworks</td>
+                <td className="p-4 text-[#64748B] dark:text-[#94A3B8]">Gin, Fiber, GORM, CodeIgniter</td>
+                <td className="p-4">
+                  <span className="inline-block px-2.5 py-0.5 rounded-full text-xs bg-[#5BDBB2]/10 text-[#5BDBB2] font-semibold">
+                    Advanced
+                  </span>
+                </td>
+              </tr>
+              <tr className="hover:bg-[#F8FAFC]/50 dark:hover:bg-[#0F172A]/20 transition-colors">
+                <td className="p-4 font-medium text-[#0F172A] dark:text-[#F1F5F9]">DevOps & Cloud</td>
+                <td className="p-4 text-[#64748B] dark:text-[#94A3B8]">Docker, Openshift, Aliyun ECS, Git, CI/CD</td>
+                <td className="p-4">
+                  <span className="inline-block px-2.5 py-0.5 rounded-full text-xs bg-[#FF6B6B]/10 text-[#FF6B6B] font-semibold">
+                    Intermediate
+                  </span>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
     </section>
   );
 }
