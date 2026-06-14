@@ -1,0 +1,983 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pradana Novan Rianto — Flowers</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&family=Playfair+Display:ital,wght@0,600;0,800;1,600&display=swap"
+        rel="stylesheet">
+
+    <style>
+        /* CSS Reset & Variable */
+        :root {
+            --bg-color-lily: radial-gradient(circle at center, #2e182b 0%, #0c050a 100%);
+            --bg-color-rose: radial-gradient(circle at center, #350f14 0%, #0d0305 100%);
+            --transition-speed: 0.8s;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            height: 100vh;
+            background: var(--bg-color-lily);
+            color: #ffffff;
+            font-family: 'Outfit', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            transition: background var(--transition-speed) ease-in-out;
+        }
+
+        /* ------------------------- */
+        /* PREMIUM NAVBAR & HEADER   */
+        /* ------------------------- */
+        header {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            padding: 20px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 100;
+            backdrop-filter: blur(10px);
+            background: rgba(15, 23, 42, 0.15);
+            border-b: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .logo {
+            font-size: 18px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-decoration: none;
+            color: #fff;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .logo span {
+            background: linear-gradient(135deg, #ff6b6b 0%, #ff8e8e 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 20px;
+            border-radius: 30px;
+            background: rgba(255, 255, 255, 0.07);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            color: #fff;
+            font-size: 14px;
+            font-weight: 500;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .back-btn:hover {
+            background: rgba(255, 255, 255, 0.15);
+            border-color: rgba(255, 255, 255, 0.3);
+            transform: translateX(-3px);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        /* ------------------------- */
+        /* SCENE & CAMERA            */
+        /* ------------------------- */
+        .scene {
+            width: 100vw;
+            height: 100vh;
+            perspective: 1000px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+
+        /* Flower Container */
+        .flower {
+            position: relative;
+            width: 0;
+            height: 0;
+            transform-style: preserve-3d;
+            animation: rotateFlower 18s linear infinite;
+            transition: transform 0.5s ease-out;
+        }
+
+        @keyframes rotateFlower {
+            0% {
+                transform: translateY(40px) rotateX(-15deg) rotateY(0deg);
+            }
+
+            100% {
+                transform: translateY(40px) rotateX(-15deg) rotateY(360deg);
+            }
+        }
+
+        .flower:hover {
+            animation-play-state: paused;
+            cursor: pointer;
+        }
+
+        /* Stem Styling */
+        .stem-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            transform-style: preserve-3d;
+        }
+
+        .stem-face {
+            position: absolute;
+            top: 0;
+            left: -4px;
+            width: 8px;
+            height: 330px;
+            background: linear-gradient(to bottom, #2d6a4f, #1b4332);
+            transform-origin: top center;
+        }
+
+        .stem-face:nth-child(1) {
+            transform: rotateY(0deg) translateZ(4px);
+        }
+
+        .stem-face:nth-child(2) {
+            transform: rotateY(90deg) translateZ(4px);
+        }
+
+        .stem-face:nth-child(3) {
+            transform: rotateY(180deg) translateZ(4px);
+        }
+
+        .stem-face:nth-child(4) {
+            transform: rotateY(270deg) translateZ(4px);
+        }
+
+        /* Leaves */
+        .leaf {
+            position: absolute;
+            left: -15px;
+            width: 30px;
+            height: 110px;
+            background: linear-gradient(to top, #1b4332, #40916c);
+            border-radius: 50% 50% 0 0;
+            transform-origin: bottom center;
+            margin-top: -110px;
+            box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.4);
+            transform-style: preserve-3d;
+        }
+
+        .leaf::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            bottom: 0;
+            width: 2px;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.15);
+            transform: translateX(-50%);
+        }
+
+        .l1 {
+            top: 130px;
+            transform: rotateY(40deg) rotateX(60deg);
+        }
+
+        .l2 {
+            top: 190px;
+            transform: rotateY(160deg) rotateX(55deg);
+        }
+
+        .l3 {
+            top: 250px;
+            transform: rotateY(280deg) rotateX(60deg);
+        }
+
+        /* ------------------------- */
+        /* CENTER PARTS (STAMEN/PISTIL) */
+        /* ------------------------- */
+        .center-parts {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            transform-style: preserve-3d;
+        }
+
+        /* Lily Stamens */
+        .stamen {
+            position: absolute;
+            left: -1.5px;
+            bottom: 0;
+            width: 3px;
+            height: 100px;
+            background: #d8f3dc;
+            transform-origin: bottom center;
+            transform-style: preserve-3d;
+            transition: all var(--transition-speed) ease-in-out;
+        }
+
+        .stamen::after {
+            content: '';
+            position: absolute;
+            top: -15px;
+            left: -3.5px;
+            width: 10px;
+            height: 22px;
+            background: #5c3d2e;
+            border-radius: 5px;
+            transform: rotateX(40deg);
+            box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+        }
+
+        .pistil {
+            position: absolute;
+            left: -2px;
+            bottom: 0;
+            width: 4px;
+            height: 115px;
+            background: #74c69d;
+            transform-origin: bottom center;
+            transform-style: preserve-3d;
+            transition: all var(--transition-speed) ease-in-out;
+        }
+
+        .pistil::after {
+            content: '';
+            position: absolute;
+            top: -5px;
+            left: -4px;
+            width: 12px;
+            height: 10px;
+            background: #95d5b2;
+            border-radius: 50%;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.4);
+        }
+
+        /* ------------------------- */
+        /* PETALS GENERAL STRUCTURE  */
+        /* ------------------------- */
+        .petals {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            transform-style: preserve-3d;
+        }
+
+        .petal {
+            position: absolute;
+            left: -35px;
+            bottom: 0;
+            width: 70px;
+            height: 200px;
+            transform-origin: bottom center;
+            transform-style: preserve-3d;
+            transition: all var(--transition-speed) cubic-bezier(0.25, 1, 0.5, 1);
+            will-change: transform;
+            backface-visibility: hidden;
+        }
+
+        .petal-bottom {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 50%;
+            transform-style: preserve-3d;
+            box-shadow: inset 0 0 15px rgba(0, 0, 0, 0.15);
+            transition: all var(--transition-speed) ease-in-out;
+        }
+
+        .petal-top {
+            position: absolute;
+            bottom: 50%;
+            left: 0;
+            width: 100%;
+            height: 50%;
+            transform-origin: bottom center;
+            transform: rotateX(35deg);
+            transform-style: preserve-3d;
+            box-shadow: inset 0 0 15px rgba(0, 0, 0, 0.15);
+            transition: all var(--transition-speed) ease-in-out;
+        }
+
+        .petal-bottom::before,
+        .petal-top::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            bottom: 0;
+            width: 2px;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.35);
+            transform: translateX(-50%);
+        }
+
+        /* Lily Specific Petal styling */
+        .lily-petal .petal-bottom {
+            background: linear-gradient(to top, #55a630 0%, #ff8fab 40%, #ff4d6d 100%);
+            border-bottom-left-radius: 50% 20px;
+            border-bottom-right-radius: 50% 20px;
+        }
+
+        .lily-petal .petal-top {
+            background: linear-gradient(to top, #ff4d6d 0%, #ffb3c1 50%, #ffffff 100%);
+            border-top-left-radius: 50% 100%;
+            border-top-right-radius: 50% 100%;
+        }
+
+        /* Rose Specific Petal styling */
+        .rose-petal {
+            /* Rose petals are rounder and wider relative to height */
+        }
+
+        .rose-petal .petal-bottom {
+            background: linear-gradient(to top, #3a0007 0%, #800f2f 40%, #c9184a 100%);
+            border-bottom-left-radius: 55% 45%;
+            border-bottom-right-radius: 55% 45%;
+            box-shadow: inset 0 -12px 24px rgba(0, 0, 0, 0.75), inset 0 6px 12px rgba(255, 255, 255, 0.1);
+        }
+
+        .rose-petal .petal-top {
+            background: linear-gradient(to top, #c9184a 0%, #ff4d6d 70%, #ff758f 100%);
+            border-top-left-radius: 55% 55%;
+            border-top-right-radius: 55% 55%;
+            box-shadow: inset 0 -6px 15px rgba(0, 0, 0, 0.55), inset 0 8px 12px rgba(255, 255, 255, 0.15);
+        }
+
+        /* ------------------------- */
+        /* CONTROLLER WIDGET         */
+        /* ------------------------- */
+        .control-panel {
+            position: absolute;
+            bottom: 50px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+            z-index: 10;
+        }
+
+        /* Segmented Selector */
+        .selector {
+            display: flex;
+            padding: 6px;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 40px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            position: relative;
+        }
+
+        .selector-btn {
+            padding: 12px 30px;
+            border: none;
+            background: transparent;
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 14px;
+            font-weight: 600;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            z-index: 2;
+            font-family: 'Outfit', sans-serif;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .selector-btn.active {
+            color: #0f172a;
+        }
+
+        .selector-slider {
+            position: absolute;
+            top: 6px;
+            bottom: 6px;
+            left: 6px;
+            width: calc(50% - 6px);
+            background: #ffffff;
+            border-radius: 30px;
+            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            z-index: 1;
+            box-shadow: 0 4px 15px rgba(255, 255, 255, 0.2);
+        }
+
+        .info-card {
+            background: rgba(15, 23, 42, 0.4);
+            backdrop-filter: blur(8px);
+            padding: 20px 30px;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            text-align: center;
+            max-width: 320px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+            animation: fadeInUp 1s ease-out;
+            position: relative;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            max-height: 400px;
+            opacity: 1;
+            overflow: hidden;
+        }
+
+        .info-card.info-hidden {
+            opacity: 0;
+            max-height: 0;
+            padding-top: 0;
+            padding-bottom: 0;
+            margin-top: 0;
+            margin-bottom: 0;
+            pointer-events: none;
+            transform: translateY(20px) scale(0.95);
+            border-color: transparent;
+        }
+
+        .close-info-btn {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: transparent;
+            border: none;
+            color: rgba(255, 255, 255, 0.4);
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 5px;
+            border-radius: 50%;
+            z-index: 5;
+        }
+
+        .close-info-btn:hover {
+            color: rgba(255, 255, 255, 0.9);
+            background: rgba(255, 255, 255, 0.08);
+            transform: scale(1.1);
+        }
+
+        .info-toggle-btn {
+            position: absolute;
+            bottom: 40px;
+            right: 40px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 20px;
+            border-radius: 30px;
+            background: rgba(255, 255, 255, 0.07);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            color: #fff;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            backdrop-filter: blur(10px);
+            z-index: 10;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            opacity: 0;
+            transform: translateY(10px);
+            pointer-events: none;
+        }
+
+        .info-toggle-btn.visible {
+            opacity: 1;
+            transform: translateY(0);
+            pointer-events: auto;
+        }
+
+        .info-toggle-btn:hover {
+            background: rgba(255, 255, 255, 0.15);
+            border-color: rgba(255, 255, 255, 0.3);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        @media (max-width: 768px) {
+            .info-toggle-btn {
+                bottom: 20px;
+                right: 20px;
+                padding: 8px 16px;
+                font-size: 12px;
+            }
+
+            .control-panel {
+                bottom: 30px;
+            }
+        }
+
+        .info-card h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 24px;
+            margin-bottom: 8px;
+            background: linear-gradient(135deg, #ffffff 0%, #e2e8f0 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .info-card p {
+            font-size: 13px;
+            color: rgba(255, 255, 255, 0.6);
+            line-height: 1.5;
+            margin-bottom: 12px;
+        }
+
+        .tip-badge {
+            display: inline-block;
+            padding: 4px 10px;
+            background: rgba(255, 255, 255, 0.08);
+            border-radius: 12px;
+            font-size: 10px;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        /* ------------------------- */
+        /* SPARKLE/PARTICLE SYSTEM   */
+        /* ------------------------- */
+        .sparkle-container {
+            position: absolute;
+            width: 100vw;
+            height: 100vh;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+            z-index: 2;
+        }
+
+        .sparkle {
+            position: absolute;
+            border-radius: 50%;
+            background: white;
+            opacity: 0;
+            filter: blur(1px);
+            animation: floatUp 6s infinite ease-in-out;
+        }
+
+        @keyframes floatUp {
+            0% {
+                transform: translateY(100vh) scale(0) rotate(0deg);
+                opacity: 0;
+            }
+
+            10% {
+                opacity: 0.7;
+            }
+
+            90% {
+                opacity: 0.7;
+            }
+
+            100% {
+                transform: translateY(-10vh) scale(1) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Custom scrollbar just in case */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 4px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Header / Nav -->
+    <header>
+        <a href="/" class="logo">
+            <span>prdnnvnrnt</span>
+        </a>
+        <a href="/" class="back-btn">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                stroke-linecap="round" stroke-linejoin="round">
+                <line x1="19" y1="12" x2="5" y2="12"></line>
+                <polyline points="12 19 5 12 12 5"></polyline>
+            </svg>
+            Kembali ke Portfolio
+        </a>
+    </header>
+
+    <!-- Sparkles/Floating Particles -->
+    <div class="sparkle-container" id="sparkle-container"></div>
+
+    <!-- 3D Scene -->
+    <div class="scene">
+        <div class="flower" id="flower-model">
+            <!-- Dynamically populated via JavaScript -->
+        </div>
+    </div>
+
+    <!-- Floating Info Toggle Button -->
+    <button class="info-toggle-btn" id="info-toggle-btn" onclick="toggleInfo(true)">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+            stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"></circle>
+            <line x1="12" y1="16" x2="12" y2="12"></line>
+            <line x1="12" y1="8" x2="12.01" y2="8"></line>
+        </svg>
+        Tampilkan Info
+    </button>
+
+    <!-- Control Panel -->
+    <div class="control-panel">
+        <div class="selector">
+            <div class="selector-slider" id="slider"></div>
+            <button class="selector-btn active" onclick="selectFlower('lily')">
+                🌸 Lily
+            </button>
+            <button class="selector-btn" onclick="selectFlower('rose')">
+                🌹 Rose
+            </button>
+        </div>
+
+        <div class="info-card" id="info-card">
+            <button class="close-info-btn" onclick="toggleInfo(false)" aria-label="Sembunyikan Info">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                </svg>
+            </button>
+            <h2 id="flower-title">Bunga Lily</h2>
+            <p id="flower-desc">Bunga Lily melambangkan kemurnian, keanggunan, dan awal yang baru.</p>
+            <div class="tip-badge">Sentuh atau arahkan mouse untuk memutar</div>
+        </div>
+    </div>
+
+    <script>
+        // Data Bunga
+        const flowerData = {
+            lily: {
+                title: "Bunga Lily Merah Muda",
+                desc: "Melambangkan kemurnian, pengabdian, dan keanggunan.",
+                bgColor: "radial-gradient(circle at center, #2e182b 0%, #0c050a 100%)",
+                sparkleColor: "rgba(255, 182, 193, 0.6)" // Pink sparkles
+            },
+            rose: {
+                title: "Bunga Mawar Merah",
+                desc: "Melambangkan cinta mendalam, kekaguman, dan keberanian.",
+                bgColor: "radial-gradient(circle at center, #3a0007 0%, #0c0002 100%)",
+                sparkleColor: "rgba(255, 77, 109, 0.6)" // Red sparkles
+            }
+        };
+
+        const flowerModel = document.getElementById('flower-model');
+        const slider = document.getElementById('slider');
+        const flowerTitle = document.getElementById('flower-title');
+        const flowerDesc = document.getElementById('flower-desc');
+        const buttons = document.querySelectorAll('.selector-btn');
+
+        // Fungsi generate sturktur Lily
+        function generateLily() {
+            let html = '';
+
+            // 1. Tangkai
+            html += `
+            <div class="stem-container">
+                <div class="stem-face"></div>
+                <div class="stem-face"></div>
+                <div class="stem-face"></div>
+                <div class="stem-face"></div>
+                
+                <div class="leaf l1"></div>
+                <div class="leaf l2"></div>
+                <div class="leaf l3"></div>
+            </div>`;
+
+            // 2. Benang Sari & Putik (Khas Lily)
+            html += `
+            <div class="center-parts">
+                <div class="stamen" style="transform: rotateY(30deg) rotateX(25deg);"></div>
+                <div class="stamen" style="transform: rotateY(90deg) rotateX(25deg);"></div>
+                <div class="stamen" style="transform: rotateY(150deg) rotateX(25deg);"></div>
+                <div class="stamen" style="transform: rotateY(210deg) rotateX(25deg);"></div>
+                <div class="stamen" style="transform: rotateY(270deg) rotateX(25deg);"></div>
+                <div class="stamen" style="transform: rotateY(330deg) rotateX(25deg);"></div>
+                <div class="pistil"></div>
+            </div>`;
+
+            // 3. Kelopak
+            html += '<div class="petals">';
+
+            // Layer Luar (p1, p2, p3): bentangan X lebih lebar
+            const outerAngles = [0, 120, 240];
+            outerAngles.forEach((angle) => {
+                html += `
+                <div class="petal lily-petal" style="transform: rotateY(${angle}deg) translateZ(-5px) rotateX(60deg);">
+                    <div class="petal-bottom"></div>
+                    <div class="petal-top" style="transform: rotateX(35deg);"></div>
+                </div>`;
+            });
+
+            // Layer Dalam (p4, p5, p6): lebih tegak
+            const innerAngles = [60, 180, 300];
+            innerAngles.forEach((angle) => {
+                html += `
+                <div class="petal lily-petal" style="transform: rotateY(${angle}deg) translateZ(5px) rotateX(45deg);">
+                    <div class="petal-bottom"></div>
+                    <div class="petal-top" style="transform: rotateX(32deg);"></div>
+                </div>`;
+            });
+
+            html += '</div>';
+            return html;
+        }
+
+        // Fungsi generate struktur Rose
+        function generateRose() {
+            let html = '';
+
+            // 1. Tangkai & Daun
+            html += `
+            <div class="stem-container">
+                <div class="stem-face"></div>
+                <div class="stem-face"></div>
+                <div class="stem-face"></div>
+                <div class="stem-face"></div>
+                
+                <div class="leaf l1"></div>
+                <div class="leaf l2"></div>
+                <div class="leaf l3"></div>
+            </div>`;
+
+            // 2. Pusat Mawar (Sedikit Putik Kuning Keemasan di bagian paling dalam)
+            html += `
+            <div class="center-parts">
+                <div class="pistil" style="height: 45px; width: 3px; background: #eeef20; opacity: 0.8; transform: rotateX(5deg);"></div>
+                <div class="pistil" style="height: 45px; width: 3px; background: #eeef20; opacity: 0.8; transform: rotateY(120deg) rotateX(5deg);"></div>
+                <div class="pistil" style="height: 45px; width: 3px; background: #eeef20; opacity: 0.8; transform: rotateY(240deg) rotateX(5deg);"></div>
+            </div>`;
+
+            // 3. Kelopak Mawar (Rose Petals)
+            // Terbagi dalam 5 layer yang disusun dari dalam ke luar untuk depth rendering yang optimal
+            html += '<div class="petals">';
+
+            // Layer 5 (Paling Dalam / Inti) - 3 Kelopak, Sangat Kuncup & Melengkung ke dalam (rotateX negatif)
+            const countL5 = 3;
+            for (let i = 0; i < countL5; i++) {
+                const angleY = (i * (360 / countL5)) + 0;
+                const scale = 0.35;
+                const rotateX = -12; // Kuncup melengkung ke dalam
+                const translateZ = 4;
+                const height = 100;
+                const width = 65;
+                const left = -width / 2;
+                const curveX = 15;
+                const brightness = 0.45; // Sangat gelap (bayangan inti)
+
+                html += `
+                <div class="petal rose-petal" style="width: ${width}px; height: ${height}px; left: ${left}px; transform: rotateY(${angleY}deg) translateZ(${translateZ}px) rotateX(${rotateX}deg) scale(${scale}); filter: brightness(${brightness});">
+                    <div class="petal-bottom"></div>
+                    <div class="petal-top" style="transform: rotateX(${curveX}deg);"></div>
+                </div>`;
+            }
+
+            // Layer 4 - 3 Kelopak, Sedikit Kuncup & Mulai Tegak
+            const countL4 = 3;
+            for (let i = 0; i < countL4; i++) {
+                const angleY = (i * (360 / countL4)) + 60;
+                const scale = 0.52;
+                const rotateX = 10;
+                const translateZ = 8;
+                const height = 120;
+                const width = 75;
+                const left = -width / 2;
+                const curveX = 20;
+                const brightness = 0.6; // Bayangan sedang
+
+                html += `
+                <div class="petal rose-petal" style="width: ${width}px; height: ${height}px; left: ${left}px; transform: rotateY(${angleY}deg) translateZ(${translateZ}px) rotateX(${rotateX}deg) scale(${scale}); filter: brightness(${brightness});">
+                    <div class="petal-bottom"></div>
+                    <div class="petal-top" style="transform: rotateX(${curveX}deg);"></div>
+                </div>`;
+            }
+
+            // Layer 3 - 4 Kelopak, Agak Terbuka
+            const countL3 = 4;
+            for (let i = 0; i < countL3; i++) {
+                const angleY = (i * (360 / countL3)) + 15;
+                const scale = 0.68;
+                const rotateX = 28;
+                const translateZ = 14;
+                const height = 140;
+                const width = 85;
+                const left = -width / 2;
+                const curveX = 26;
+                const brightness = 0.75; // Shading transisi
+
+                html += `
+                <div class="petal rose-petal" style="width: ${width}px; height: ${height}px; left: ${left}px; transform: rotateY(${angleY}deg) translateZ(${translateZ}px) rotateX(${rotateX}deg) scale(${scale}); filter: brightness(${brightness});">
+                    <div class="petal-bottom"></div>
+                    <div class="petal-top" style="transform: rotateX(${curveX}deg);"></div>
+                </div>`;
+            }
+
+            // Layer 2 - 4 Kelopak, Cukup Terbuka
+            const countL2 = 4;
+            for (let i = 0; i < countL2; i++) {
+                const angleY = (i * (360 / countL2)) + 45;
+                const scale = 0.82;
+                const rotateX = 48;
+                const translateZ = 20;
+                const height = 160;
+                const width = 95;
+                const left = -width / 2;
+                const curveX = 30;
+                const brightness = 0.9; // Cukup terang
+
+                html += `
+                <div class="petal rose-petal" style="width: ${width}px; height: ${height}px; left: ${left}px; transform: rotateY(${angleY}deg) translateZ(${translateZ}px) rotateX(${rotateX}deg) scale(${scale}); filter: brightness(${brightness});">
+                    <div class="petal-bottom"></div>
+                    <div class="petal-top" style="transform: rotateX(${curveX}deg);"></div>
+                </div>`;
+            }
+
+            // Layer 1 (Terluar) - 5 Kelopak, Terbuka lebar keluar
+            const countL1 = 5;
+            for (let i = 0; i < countL1; i++) {
+                const angleY = (i * (360 / countL1)) + 36;
+                const scale = 0.95;
+                const rotateX = 68; // Mekar lebar keluar
+                const translateZ = 28;
+                const height = 180;
+                const width = 110;
+                const left = -width / 2;
+                const curveX = 35;
+                const brightness = 1.0; // Terang maksimal (terkena cahaya langsung)
+
+                html += `
+                <div class="petal rose-petal" style="width: ${width}px; height: ${height}px; left: ${left}px; transform: rotateY(${angleY}deg) translateZ(${translateZ}px) rotateX(${rotateX}deg) scale(${scale}); filter: brightness(${brightness});">
+                    <div class="petal-bottom"></div>
+                    <div class="petal-top" style="transform: rotateX(${curveX}deg);"></div>
+                </div>`;
+            }
+
+            html += '</div>';
+            return html;
+        }
+
+        // Ubah Bunga Terpilih
+        function selectFlower(type) {
+            // Update Background Body
+            document.body.style.background = flowerData[type].bgColor;
+
+            // Slider & Active Button
+            if (type === 'lily') {
+                slider.style.transform = 'translateX(0)';
+                buttons[0].classList.add('active');
+                buttons[1].classList.remove('active');
+            } else {
+                slider.style.transform = 'translateX(100%)';
+                buttons[0].classList.remove('active');
+                buttons[1].classList.add('active');
+            }
+
+            // Fade Out Flower Model
+            flowerModel.style.transform = 'translateY(50px) rotateX(-15deg) rotateY(0deg) scale(0)';
+            flowerModel.style.opacity = '0';
+
+            // Update Info Text
+            setTimeout(() => {
+                flowerTitle.innerText = flowerData[type].title;
+                flowerDesc.innerText = flowerData[type].desc;
+
+                // Build model
+                if (type === 'lily') {
+                    flowerModel.innerHTML = generateLily();
+                } else {
+                    flowerModel.innerHTML = generateRose();
+                }
+
+                // Fade In New Flower Model
+                flowerModel.style.transform = 'scale(1)';
+                flowerModel.style.opacity = '1';
+
+                // Re-adjust Sparkles to match new flower color theme
+                createSparkles(flowerData[type].sparkleColor);
+            }, 400);
+        }
+
+        // Particle System
+        const sparkleContainer = document.getElementById('sparkle-container');
+
+        function createSparkles(color) {
+            sparkleContainer.innerHTML = '';
+            const count = 40;
+            for (let i = 0; i < count; i++) {
+                const sparkle = document.createElement('div');
+                sparkle.className = 'sparkle';
+
+                const size = Math.random() * 4 + 2;
+                const left = Math.random() * 100;
+                const delay = Math.random() * 8;
+                const duration = Math.random() * 5 + 5;
+
+                sparkle.style.width = `${size}px`;
+                sparkle.style.height = `${size}px`;
+                sparkle.style.left = `${left}vw`;
+                sparkle.style.animationDelay = `${delay}s`;
+                sparkle.style.animationDuration = `${duration}s`;
+                sparkle.style.background = color;
+                sparkle.style.boxShadow = `0 0 ${size * 2}px ${color}`;
+
+                sparkleContainer.appendChild(sparkle);
+            }
+        }
+
+        function toggleInfo(show) {
+            const card = document.getElementById('info-card');
+            const btn = document.getElementById('info-toggle-btn');
+            if (show) {
+                card.classList.remove('info-hidden');
+                btn.classList.remove('visible');
+            } else {
+                card.classList.add('info-hidden');
+                btn.classList.add('visible');
+            }
+        }
+
+        // Inisialisasi awal
+        window.addEventListener('DOMContentLoaded', () => {
+            selectFlower('lily');
+        });
+    </script>
+</body>
+
+</html>
